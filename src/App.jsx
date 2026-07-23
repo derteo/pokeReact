@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { HashRouter, Routes, Route } from 'react-router'
 import { createAppTheme } from './theme'
 import Layout from './components/Layout/Layout'
 
@@ -29,7 +29,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
+      <HashRouter>
         <Suspense fallback={null}>
           <Routes>
             <Route element={<Layout mode={mode} onToggleMode={toggleMode} />}>
@@ -39,7 +39,7 @@ export default function App() {
             </Route>
           </Routes>
         </Suspense>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   )
 }
