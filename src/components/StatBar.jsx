@@ -8,7 +8,7 @@ const MAX_STAT_VALUE = 255
 
 export default function StatBar({ name, value }) {
   return (
-    <Stack direction="row" spacing={2} alignItems="center">
+    <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
       <Typography variant="body2" color="text.secondary" sx={{ width: 84, flexShrink: 0 }}>
         {statLabel(name)}
       </Typography>

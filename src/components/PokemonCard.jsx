@@ -32,8 +32,8 @@ export default function PokemonCard({ pokemon }) {
         sx={{ height: '100%' }}
       >
         <CardContent>
-          <Stack alignItems="center" spacing={1}>
-            <Typography variant="caption" color="text.secondary" alignSelf="flex-start">
+          <Stack spacing={1} sx={{ alignItems: 'center' }}>
+            <Typography variant="caption" color="text.secondary" sx={{ alignSelf: 'flex-start' }}>
               {formatPokemonId(pokemon.id)}
             </Typography>
             <Box
@@ -46,7 +46,7 @@ export default function PokemonCard({ pokemon }) {
             <Typography variant="subtitle1" fontWeight={700}>
               {formatPokemonName(pokemon.name)}
             </Typography>
-            <Stack direction="row" spacing={0.5} flexWrap="wrap" justifyContent="center">
+            <Stack direction="row" spacing={0.5} sx={{ flexWrap: 'wrap', justifyContent: 'center' }}>
               {pokemon.types.map(({ type }) => (
                 <TypeChip key={type.name} type={type.name} />
               ))}

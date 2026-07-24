@@ -7,7 +7,7 @@ export default function PokemonCardSkeleton() {
   return (
     <Card elevation={0} sx={{ height: '100%', border: '1px solid', borderColor: 'divider' }}>
       <CardContent>
-        <Stack alignItems="center" spacing={1}>
+        <Stack spacing={1} sx={{ alignItems: 'center' }}>
           <Skeleton variant="text" width={40} sx={{ alignSelf: 'flex-start' }} />
           <Skeleton variant="circular" width={120} height={120} />
           <Skeleton variant="text" width={100} />

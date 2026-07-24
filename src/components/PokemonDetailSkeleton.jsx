@@ -8,7 +8,7 @@ export default function PokemonDetailSkeleton() {
     <Stack spacing={3}>
       <Skeleton variant="text" width={140} height={40} />
       <Paper elevation={0} sx={{ p: { xs: 2, md: 4 }, border: '1px solid', borderColor: 'divider' }}>
-        <Grid container spacing={4} alignItems="center">
+        <Grid container spacing={4} sx={{ alignItems: 'center' }}>
           <Grid size={{ xs: 12, md: 5 }}>
             <Skeleton variant="circular" width={220} height={220} sx={{ mx: 'auto' }} />
           </Grid>
