@@ -1,14 +1,32 @@
 import Stack from '@mui/material/Stack'
-import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutlineRounded'
 
-export default function ErrorState({ message }) {
+export default function ErrorState({ title = 'Ops!', message }) {
   return (
-    <Stack alignItems="center" spacing={2} sx={{ py: 6 }}>
-      <Alert severity="error" sx={{ maxWidth: 480, width: '100%' }}>
-        <AlertTitle>Ops!</AlertTitle>
-        {message}
-      </Alert>
+    <Stack sx={{ alignItems: 'center', width: '100%' }}>
+      <Paper
+        elevation={0}
+        sx={{
+          p: { xs: 3, md: 4 },
+          maxWidth: 420,
+          width: '100%',
+          textAlign: 'center',
+          border: '1px solid',
+          borderColor: 'error.main',
+          backgroundImage: (theme) =>
+            `linear-gradient(160deg, ${theme.palette.error.main}1f, ${theme.palette.background.paper} 70%)`,
+        }}
+      >
+        <ErrorOutlineIcon sx={{ fontSize: 56, color: 'error.main', mb: 1 }} />
+        <Typography variant="h6" fontWeight={700}>
+          {title}
+        </Typography>
+        <Typography color="text.secondary" sx={{ mt: 1 }}>
+          {message}
+        </Typography>
+      </Paper>
     </Stack>
   )
 }
