@@ -8,7 +8,11 @@ export default function Layout({ mode, onToggleMode }) {
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navbar mode={mode} onToggleMode={onToggleMode} />
-      <Container component="main" maxWidth="lg" sx={{ py: 4, flexGrow: 1 }}>
+      <Container
+        component="main"
+        maxWidth="lg"
+        sx={{ py: 4, flexGrow: 1, display: 'flex', flexDirection: 'column' }}
+      >
         <Outlet />
       </Container>
       <Box component="footer" sx={{ py: 3, textAlign: 'center' }}>
