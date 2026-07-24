@@ -20,15 +20,18 @@ import { formatPokemonId, formatPokemonName, cleanFlavorText, typeColor, MAX_POK
 export default function PokemonDetailPage() {
   const { idOrName } = useParams()
   const navigate = useNavigate()
-  const { pokemon, species, loading, error } = usePokemonDetail(idOrName)
+  const { pokemon, species, loading, error, notFound } = usePokemonDetail(idOrName)
 
   if (loading) return <PokemonDetailSkeleton />
 
   if (error || !pokemon) {
     return (
-      <Stack spacing={2} alignItems="center">
-        <ErrorState message={error ?? 'Pokémon non trovato.'} />
-        <Button component={RouterLink} to="/" startIcon={<ArrowBackIcon />}>
+      <Stack spacing={3} sx={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ErrorState
+          title={notFound ? 'Pokémon non trovato' : 'Ops!'}
+          message={error ?? "Il Pokémon che cerchi non esiste o è sfuggito nell'erba alta."}
+        />
+        <Button component={RouterLink} to="/" variant="contained" size="large" startIcon={<ArrowBackIcon />}>
           Torna al Pokédex
         </Button>
       </Stack>
@@ -64,9 +67,13 @@ export default function PokemonDetailPage() {
             `linear-gradient(160deg, ${typeColor(primaryType)}33, ${theme.palette.background.paper} 65%)`,
         }}
       >
-        <Grid container spacing={4} alignItems="center">
+        <Grid container spacing={4} sx={{ alignItems: 'center' }}>
           <Grid size={{ xs: 12, md: 5 }}>
-            <Stack direction="row" alignItems="center" justifyContent="center" spacing={1}>
+            <Stack
+              direction="row"
+              spacing={1}
+              sx={{ alignItems: 'center', justifyContent: 'center' }}
+            >
               <IconButton
                 onClick={() => navigate(`/pokemon/${pokemon.id - 1}`)}
                 disabled={!isInNationalDex || pokemon.id <= 1}
@@ -136,7 +143,7 @@ export default function PokemonDetailPage() {
                 <Typography variant="subtitle2" color="text.secondary" gutterBottom>
                   Abilità
                 </Typography>
-                <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+                <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: 'wrap' }}>
                   {pokemon.abilities.map(({ ability, is_hidden }) => (
                     <Chip
                       key={ability.name}
