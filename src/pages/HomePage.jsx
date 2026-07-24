@@ -62,12 +62,14 @@ export default function HomePage() {
   }
 
   return (
-    <Stack spacing={3}>
+    <Stack spacing={3} sx={{ flexGrow: 1 }}>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
-        justifyContent="space-between"
-        alignItems={{ xs: 'stretch', sm: 'center' }}
         spacing={2}
+        sx={{
+          justifyContent: 'space-between',
+          alignItems: { xs: 'stretch', sm: 'center' },
+        }}
       >
         <Typography variant="h4">Pokédex</Typography>
         <FormControl size="small" sx={{ minWidth: 200 }}>
@@ -90,7 +92,11 @@ export default function HomePage() {
         </FormControl>
       </Stack>
 
-      {error && <ErrorState message={error} />}
+      {error && (
+        <Stack sx={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <ErrorState message={error} />
+        </Stack>
+      )}
 
       {!error && (
         <Grid container spacing={2}>
@@ -109,7 +115,7 @@ export default function HomePage() {
       )}
 
       {!error && pageCount > 1 && (
-        <Stack alignItems="center" sx={{ pt: 2 }}>
+        <Stack sx={{ alignItems: 'center', pt: 2 }}>
           <Pagination
             count={pageCount}
             page={page}
