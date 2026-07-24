@@ -56,6 +56,7 @@ Pokédex web moderno costruito con **React 19**, **Material UI** e i dati pubbli
 - **Retry automatico delle chiamate API**: in caso di errori di rete transitori o di limitazioni temporanee da parte di PokéAPI (HTTP 429/5xx), le richieste vengono ritentate automaticamente con backoff prima di mostrare un errore all'utente.
 - **Annullamento richieste in corso** (`AbortController`): se l'utente cambia pagina o filtro prima che una richiesta precedente sia terminata, questa viene annullata per evitare aggiornamenti di stato inutili o inconsistenti.
 - **Cache in-memory** dell'indice completo dei Pokémon usato dalla ricerca, per evitare di riscaricarlo ad ogni digitazione.
+- **Compatibilità con GitHub Pages** (hosting 100% statico, senza rewrite lato server): il routing usa `HashRouter` (URL tipo `/#/pokemon/25`) così ogni navigazione interna resta client-side. Per i link "a freddo" senza `#` (digitati a mano o esterni), `public/404.html` intercetta il 404 nativo di GitHub Pages e reindirizza all'equivalente URL con `#`, lasciando comunque gestire la rotta a React Router (inclusa la pagina 404 custom se il percorso non esiste davvero).
 
 ---
 
@@ -83,7 +84,9 @@ pokeReact/
 ├── vite.config.js              # Configurazione Vite
 ├── eslint.config.js            # Configurazione ESLint
 ├── public/
-│   └── favicon.svg
+│   ├── favicon.svg
+│   ├── 404.html                 # Redirect per il routing client-side su GitHub Pages
+│   └── CNAME                    # Dominio custom per GitHub Pages
 └── src/
     ├── main.jsx                 # Bootstrap dell'app React
     ├── App.jsx                  # Routing, tema e code-splitting delle pagine
